@@ -1,0 +1,56 @@
+Test Scenario: Add Products from External File and Verify in Cart
+Steps:
+Read Product Names from External File (CSV/Excel/JSON).
+Open the Sauce Labs web application.
+Navigate to the Login page.
+Enter valid username and valid password.
+Click Login.
+For each product name from the external file:
+Select the Sauce Labs Bolt T-Shirt and and Sauce Labs Bike Light and add to cart..
+Capture and store the price of the product.
+Add the product to the cart.
+Navigate to the cart page.
+Verify that:
+All products from the external file are present in the cart.
+Each product’s name matches the input file.
+Each product’s price matches the captured price from the product list.
+Expected Result:
+All products listed in the external file are successfully added to the cart.
+Product names and prices in the cart match those on the product list page.
+Test Data Source:
+External file containing product names (e.g., products.csv or products.xlsx).
+Assignment: Automation of Sauce Labs Login and Payment Flow
+Objective:
+
+Automate the end-to-end test scenario for logging into Sauce Labs and completing the payment process for products.
+
+The flow should include:
+Testing with both valid and invalid user credentials.
+Reading product names from an external file (CSV/Excel/JSON).
+Capturing price for each product before adding it to the cart.
+Verifying product name and price in the cart.
+
+_______________________________________________________________________________________________________________
+
+Test Dat
+ 
+ 
+Scenario
+	
+Username
+	
+Password
+	
+Expected Result
+
+
+Valid
+	
+standard_user
+	
+secret_sauce
+	
+Success
+
+ 
+ 

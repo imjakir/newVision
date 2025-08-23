@@ -1,0 +1,16 @@
+{
+  "credentials": {
+    "valid": {
+      "username": "standard_user",
+      "password": "secret_sauce"
+    }
+  },
+  "products": [
+    {
+      "name": "Sauce Labs Bolt T-Shirt"
+    },
+    {
+      "name": "Sauce Labs Bike Light"
+    }
+  ]
+}
