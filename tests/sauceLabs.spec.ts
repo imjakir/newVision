@@ -13,13 +13,17 @@ test('Add Products from External File and Verify in Cart', async ({ page }) => {
   const loginButton = page.locator("//input[@id='login-button']");
   await loginButton.click();
   await page.waitForLoadState('networkidle');
-  
+
+  let addedPrice: string[] = [];
   for (const product of productData.products) {
     const addToCartButton = page.locator(`//div[text()='${product.name}']/ancestor::div[contains(@class, 'inventory_item')]//div[@class='pricebar']/button[text()='ADD TO CART']`);
     const removeButton = page.locator(`//div[text()='${product.name}']/ancestor::div[contains(@class, 'inventory_item')]//div[@class='pricebar']/button[text()='REMOVE']`);
     await expect(addToCartButton).toBeVisible();
     await addToCartButton.click();
     await expect(removeButton).toBeVisible();
+    const priceTextWithDollarSign = await page.locator(`//div[contains(text(), '${product.name}')]/ancestor::div[@class='inventory_item']/div[@class='pricebar']/div[@class='inventory_item_price']`).innerText();
+    const finalPrice = priceTextWithDollarSign.substring(1);
+    addedPrice.push(finalPrice);
   }
   
   const cartButton = page.locator("//div[@id='shopping_cart_container']");
@@ -34,5 +38,9 @@ test('Add Products from External File and Verify in Cart', async ({ page }) => {
   for (let i = 0; i < productData.products.length; i++) {
     const cartItemName = await cartItems.nth(i).locator("//div[@class='inventory_item_name']").textContent();
     expect(cartItemName).toBe(productData.products[i].name);
+    const cartItemPrice = await cartItems.nth(i).locator("//div[@class='inventory_item_price']").textContent();
+    expect(cartItemPrice).toBe(addedPrice[i]);
   }
+  await page.waitForTimeout(2000);
+  await page.close();
 });
